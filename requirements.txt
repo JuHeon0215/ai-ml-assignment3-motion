@@ -1,0 +1,8 @@
+matplotlib==3.9.4
+mediapipe==0.10.21
+numpy==1.26.4
+opencv-contrib-python==4.11.0.86
+pandas==2.3.3
+pytubefix==11.2.1
+tqdm==4.70.1
+viser==1.1.1

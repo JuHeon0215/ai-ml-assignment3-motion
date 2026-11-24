@@ -1,0 +1,4 @@
+data/raw_videos/
+data/raw_keypoints/
+__pycache__/
+.DS_Store
