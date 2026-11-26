@@ -15,14 +15,26 @@ ArmRaise and JumpingJack videos are used as a reference group.
 | 2. Problem Identification | `scripts/a3_2_problem_analysis.py` | `data/analysis/problem_metrics_raw.csv`, `figures/*_raw.png` |
 | 3. Post-processing | `scripts/p1_2_post_processing.py` | `data/processed/*_target.npy`, `*_target.csv` |
 | 4. Results & Analysis | `scripts/a3_3_compare.py` | `data/analysis/compare_metrics.csv`, `figures/*_compare.png` |
+| 5. Bonus experiments (A: smoothing window, B: low-visibility interpolation, C: bone-length correction) | `scripts/extra_experiments.py` | `data/analysis/extra_<name>.txt`, `figures/extra_<name>_forearm.png` |
 
 Run order: `p1` -> `a3_1` -> `a3_2` -> `p1_2` -> `a3_3`
 
 ## Reproducing
 The full results for all 7 videos are saved in `data/analysis/`.
-This repository contains the sample for Taegeuk 1 jang only (`data/processed/`),
-so `a3_2` and `a3_3` can be re-run on that sample.
+`data/processed/` contains Taegeuk 1, 2 and 3 jang (`<name>.npz` = raw keypoints with visibility,
+`<name>_target.npy` = post-processed). Taegeuk 1 also has `_raw.npy` / `_target.csv`.
+```
+python scripts/a3_2_problem_analysis.py     # problem metrics / figures
+python scripts/a3_3_compare.py              # raw vs target vs target+MA5
+python scripts/extra_experiments.py 태극_1장   # bonus experiments A-C (also 태극_2장, 태극_3장)
+```
 The source videos are not included; run `p1` to download them again.
+
+## Key results (Taegeuk 1 / 2 / 3 jang)
+- Foot height: -0.81 m -> 0.00 m after `p1_2` (hip height 0.002 -> 0.805 m).
+- 5-frame moving average: jitter -74 / -75 / -77%, mean joint shift 1.7 +- 0.3 cm.
+- Bone-length correction (after MA5): bone-length CV -> 0.000, but 1.4 / 2.1 / 1.6% of joint-frames fall below the floor.
+- Low-visibility interpolation was rejected (bone-length CV gets worse in all three videos).
 
 ## Videos
 | Group | Video | URL |
